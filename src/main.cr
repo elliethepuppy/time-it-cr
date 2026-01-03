@@ -18,7 +18,7 @@ OptionParser.parse do |parser|
   parser.on("-e EXECUTABLE", "--executable=EXECUTABLE", "set the executable to be times to EXECUTABLE\n") { |executable| prog = executable }
   parser.on("-a 'ARGS'", "--args='ARGS'", "set the arguments for the timed program\n") { |_args| args = _args }
   parser.on("-r INT", "--runs=INT", "set the number of runs to time the program\n") { |int| runs = int.to_i }
-  parser.on("-lp PATH", "--log-path=PATH", "set the path of the log file for this run to PATH") { |path| log_path = Path.new(path) }
+  parser.on("-lp PATH", "--log-path=PATH", "set the path of the log file for this run to PATH\n") { |path| log_path = Path.new(path) }
   parser.on("-h", "--help", "show this help message") do
     puts parser
     exit 1
