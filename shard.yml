@@ -1,0 +1,13 @@
+name: time_it
+version: 0.1.0
+
+authors:
+  - elliethepuppy <ellsylv@proton.me>
+
+targets:
+  time_it:
+    main: src/time_it.cr
+
+crystal: '>= 1.18.2'
+
+license: MIT
