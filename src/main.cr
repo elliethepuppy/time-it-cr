@@ -31,21 +31,17 @@ OptionParser.parse do |parser|
 end
 
 if interpreter = ""
-  unless args == ""
-    exe_with_args = "#{prog} #{args}"
-  else
-    exe_with_args = "#{prog}"
-  end
+  exe = "#{prog}"
 else
-  unless args == ""
-    exe_with_args = "#{interpreter} #{prog} #{args}"
-  else
-    exe_with_args = "#{interpreter} #{prog}"
-  end
+  exe = "#{interpreter} #{prog}"
 end
 
-unless exe_with_args == ""
-  result = TimeIt.time_it(exe_with_args, runs)
+unless args == ""
+  args_array = args.split(" ")
+end
+
+unless exe == ""
+  result = TimeIt.time_it(exe, args_array, runs)
   result_string = "\n#{result[0]}\n#{result[1]}\n"
   puts result_string
 end

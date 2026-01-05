@@ -2,23 +2,35 @@
 # just feels so painfully straightforward...
 module TimeIt
   extend self
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
 
   # `time_it` is the function that actually times the program.
-  # it does this by taking a String *exe_with_args* and feeding
+  # it does this by taking a `String` *exe* and (optionally)
+  # an `Array(String) | Nil` *args*, then feeding
   # it to `Process.run` *runs* number of times, timing each run
   # and placing it into an array for later formatting.
-  def time_it(exe_with_args : String, runs : Int32 = 10) : Tuple(String, String)
+  def time_it(exe : String,
+              args : Array(String) | Nil = nil,
+              runs : Int32 = 10) : Tuple(String, String)
     all_times = Array(Float64).new
     avg_time : Float64 = 0.0
     i : Int32 = 0
-
-    until i == runs
-      start = Time.monotonic.to_f
-      Process.run exe_with_args
-      finish = Time.monotonic.to_f
-      all_times << finish - start
-      i += 1
+    unless args.nil?
+      until i == runs
+        start = Time.monotonic.to_f
+        Process.run exe, args
+        finish = Time.monotonic.to_f
+        all_times << finish - start
+        i += 1
+      end
+    else
+      until i == runs
+        start = Time.monotonic.to_f
+        Process.run exe
+        finish = Time.monotonic.to_f
+        all_times << finish - start
+        i += 1
+      end
     end
 
     avg_time = all_times.sum / all_times.size
