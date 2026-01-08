@@ -2,7 +2,7 @@
 # just feels so painfully straightforward...
 module TimeIt
   extend self
-  VERSION = "0.1.1"
+  VERSION = "0.1.2"
 
   # `time_it` is the function that actually times the program.
   # it does this by taking a `String` *exe* and (optionally)

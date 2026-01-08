@@ -14,6 +14,31 @@ crystal build src/main.cr -o /path/to/destination/for/time-it --release --no-deb
 
 ## Usage
 
+```
+usage: time-it [flags] [exe or interpreted] [program name or path to program]
+
+    -l, --log                        write generated output to the log file at ~/.cache/time-it.log
+
+    -cl, --clear-log                 clear the log at ~/.cache/time-it.log
+
+    -no, --no-output                 run the program without generating output to the terminal (use -l to get the info)
+    -i INTERPRETER, --interpreter=INTERPRETER
+                                     set interpreter to be used to INTERPRETER
+
+    -e EXECUTABLE, --executable=EXECUTABLE
+                                     set the executable to be times to EXECUTABLE
+
+    -a 'ARGS', --args='ARGS'         set the arguments for the timed program
+
+    -r INT, --runs=INT               set the number of runs to time the program
+
+    -lp PATH, --log-path=PATH        set the path of the log file for this run to PATH
+
+    -v, --version                    display the version number
+    -h, --help                       show this help message
+
+```
+
 in order to call `time-it` from anywhere, you'll need to add it to your PATH. you can do this any number of ways, so i'll leave you to deciding the best for you. you can read the full documentation [here](https://elliethepuppy.github.io/time-it)
 
 ## Development
