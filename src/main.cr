@@ -10,7 +10,7 @@ clear_log : Bool = false
 no_output : Bool = false
 log_path = Path.new(Path.home, ".cache", "time-it.log")
 
-OptionParser.parse do |parser|
+parser = OptionParser.new do |parser|
   parser.banner = "time-it: a simple executable timer\n" \
                   "usage: time-it [flags] [exe or interpreted] [program name or path to program]\n"
   parser.on("-l", "--log", "write generated output to the log file at ~/.cache/time-it.log\n") { log = true }
@@ -35,6 +35,14 @@ OptionParser.parse do |parser|
     exit -1
   end
 end
+
+if ARGV.size == 0
+  STDERR.puts "not enough arguments!"
+  STDERR.puts parser
+  exit -1
+end
+
+parser.parse
 
 if interpreter = ""
   exe = "#{prog}"
